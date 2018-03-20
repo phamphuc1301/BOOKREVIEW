@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- Base Definition -->
+	<definition name="base-definition" template="/views/tiles/layouts/tBaseLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/views/tiles/includes/common_header.jsp" />
+		<put-attribute name="menu" value="/views/tiles/includes/common_menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/views/tiles/includes/common_footer.jsp" />
+	</definition>
+
+	<!-- Home Page -->
+	<definition name="home" extends="base-definition">
+		<put-attribute name="title" value="Welcome" />
+		<put-attribute name="body" value="/views/pages/home.jsp" />
+	</definition>
+
+	<!-- Team list Page -->
+	<definition name="teams" extends="base-definition">
+		<put-attribute name="title" value="Team List" />
+		<put-attribute name="body" value="/views/pages/team_list.jsp" />
+	</definition>
+	
+	   <!-- Team add Page -->
+    <definition name="addTeam" extends="base-definition">
+        <put-attribute name="title" value="Create Class" />
+        <put-attribute name="body" value="/views/pages/team_add.jsp" />
+    </definition>
+    
+    <!-- Trainer add Page -->
+    <definition name="addTrainer" extends="base-definition">
+        <put-attribute name="title" value="Create Trainer" />
+        <put-attribute name="body" value="/views/pages/trainer_add.jsp" />
+    </definition>
+    
+    
+    <!--listTrainer  -->
+    <definition name="trainers" extends="base-definition">
+        <put-attribute name="title" value="List Trainer"/>
+        <put-attribute name="body" value="/views/pages/trainer_list.jsp"></put-attribute>
+    </definition>
+    
+    <!-- Trainee add Page -->
+    <definition name="addTrainee" extends="base-definition">
+        <put-attribute name="title" value="Create Trainee" />
+        <put-attribute name="body" value="/views/pages/trainee_add.jsp" />
+    </definition>
+    
+     <!-- Course add Page -->
+    <definition name="addCourse" extends="base-definition">
+        <put-attribute name="title" value="Create Course" />
+        <put-attribute name="body" value="/views/pages/course_add.jsp" />
+    </definition>
+    
+    
+    <!--listTrainer  -->
+    <definition name="courses" extends="base-definition">
+        <put-attribute name="title" value="List Course"/>
+        <put-attribute name="body" value="/views/pages/course_list.jsp"></put-attribute>
+    </definition>
+    
+    
+        <!--error  -->
+    <definition name="error" extends="base-definition">
+        <put-attribute name="title" value="Error"/>
+        <put-attribute name="body" value="/views/pages/trainer_list.jsp"></put-attribute>
+    </definition>
+
+</tiles-definitions>

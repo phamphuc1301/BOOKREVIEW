@@ -1,0 +1,107 @@
+@CHARSET "ISO-8859-1";
+
+.dWRAP2 {
+    border: 0px solid #f5f5f0;
+    border-radius: 5px 5px 5px 5px;
+    width: 100%;
+    margin: auto;
+    /* box-shadow: 1px 2px 1px #808080; */
+    height: 450px;
+}
+
+.dLabel1 {
+    height: 30px;
+    vertical-align: middle;
+    line-height: 40px;
+    font-family: Microsoft Sans Serif;
+    font-weight: bold;
+    font-size: 15px;
+    border-bottom: px solid #E0E0E0;
+    text-indent: 3%;
+}
+/* .dValue1{
+    width: 20%;
+}
+ */
+.dLabel2 {
+    width: 20%;
+    background-color: #f5f5f0;
+    font-size: 13px;
+}
+
+.dLabel2, .dValue1 {
+    padding-left: 5px;
+}
+
+.dValue1>select {
+    width: 100px;
+    border-radius: 2px;
+    border: 1px solid #E0E0E0;
+    height: 25px;
+}
+
+.dButton {
+    background-color: #3399ff;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 93px;
+    height: 25px;
+    /* border: 0px solid #E0E0E0; */
+    */
+    /*  border-radius: 2px;
+    cursor: pointer; */
+}
+
+.fTable {
+    height: auto;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2%;
+}
+
+table, tr, td {
+    border: 1px solid #C8C8C8;
+}
+td{
+    padding: 5px;
+}
+.dValue1>input {
+    border-radius: 2px;
+    border: 1px solid #E0E0E0;
+    height: 22px;
+    text-indent: 5px;
+}
+.dTABLE{
+    width: 96%;
+    height: auto;
+    margin: auto;
+}
+.cTable{
+    width: 100%;
+    border: 1px solid #C8C8C8;
+    border-collapse: collapse;
+
+}
+.cTable tr, .cTable td, .cTable th{
+    border: 1px solid #C8C8C8;
+       padding: 10px;
+}
+.dFORM{
+    width: 96%;
+    overflow: auto;
+    height: auto;
+    margin: auto;
+}
+span {
+    font-size: 20px;
+}
+hr{
+    width: 96%;
+}

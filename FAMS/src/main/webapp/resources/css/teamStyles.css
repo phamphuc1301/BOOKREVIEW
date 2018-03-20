@@ -1,0 +1,13 @@
+@CHARSET "ISO-8859-1";
+
+.table3, .table3 tr, .table3 td, .table3 th{
+	font-family: Candana;
+	font-size: 15px;
+	border: 1px solid #e5e5cc;
+	padding: 3px;
+
+}
+
+.table3{
+	width: 80%;
+}

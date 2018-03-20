@@ -1,0 +1,46 @@
+//1. Spring Param
+<c:forEach items="${listOfTeam}" var="team" varStatus="theCount">
+    <tr>
+        <td>${theCount.count}</td>
+        <td>${team.teamname}</td>
+        <td>${team.coachname}</td>
+        <td>${team.nationalname}</td>
+        <td colspan="2">
+            <spring:url value="edit_team" var="edit">
+                <spring:param name="id" value="${team.id}"/>
+            </spring:url>
+            <spring:url value="delete_team" var = "delete">
+                <spring:param name="id" value="${team.id}"></spring:param>
+            </spring:url>
+            <a href="${edit}">Edit</a> | <a href="${delete}">Delete</a>
+        </td>
+    </tr>
+</c:forEach>
+
+//2. JavaScript with Tiles  
+<input type="button" class="btn btn-default" value="Make Group" onclick="makeGroup()">
+<div style="margin-top: 5px" id="group"></div>
+<definition name="make" template="/views/pages/make_group.jsp" />
+<script type="text/javascript">
+    function makeGroup(){
+        $("#group").load("<%= request.getContextPath()%>/makeGroup");
+    }
+</script>
+
+//3. Spring pathVariable
+<a href="<%= request.getContextPath()%>/delete/${team.id}">Delete</a>
+<a href="<%= request.getContextPath()%>/edit/${team.id}">Edit</a>
+
+@RequestMapping(value = "/delete/{id}")
+public String delete(@PathVariable("id") int id, ModelMap modelMap) {
+    teamService.delete(id);
+    modelMap.addAttribute("list_of_team", teamService.getAllTeam());
+    return "teams_management";
+}
+
+@RequestMapping(value = ("/edit/{id}"))
+public String edit(@PathVariable("id") int id, ModelMap modelMap) {
+    modelMap.addAttribute("team", teamService.getTeam(id));
+    modelMap.addAttribute("list_of_team", teamService.getAllTeam());
+    return "teams_management";
+}

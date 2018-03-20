@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+  http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+  http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+	<import resource="classpath:user-beans.xml" />
+	<context:component-scan base-package="com.fsoft" />
+	<context:annotation-config />
+	<mvc:annotation-driven />
+
+	<!--JPA  -->
+    <!--scan Repository -->
+    <jpa:repositories base-package="com.fsoft.repositories"/>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan" value="com.fsoft.entities" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="showSql" value="true" />
+                <property name="generateDdl" value="true" />
+                <property name="databasePlatform" value="org.hibernate.dialect.SQLServerDialect" />
+            </bean>
+        </property>
+    </bean>
+    
+	<!-- Used to serve static resources like css, images and javascript files -->
+
+	<!--VIEW RESOLVER -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+		<property name="viewClass">
+			<value>
+				org.springframework.web.servlet.view.tiles3.TilesView
+			</value>
+		</property>
+	</bean>
+
+	<!-- Tiles configuration -->
+
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	
+	<!--Security  -->
+   <security:http auto-config="true"  use-expressions="true">
+        <security:csrf disabled="true"/>
+        <security:intercept-url pattern="/saveTrainer" access="hasRole('ROLE_ADMIN')" />
+        <security:intercept-url pattern="/saveTeam" access="hasRole('ROLE_ADMIN')" />
+        <security:intercept-url pattern="/listTeam" access="hasAnyRole('ROLE_USER, ROLE_ADMIN')" />
+        <security:intercept-url pattern="/listTrainer" access="hasAnyRole('ROLE_USER, ROLE_ADMIN')" />
+        <security:intercept-url pattern="/addTeam" access="hasRole('ROLE_ADMIN')" />
+        <security:intercept-url pattern="/addTrainer" access="hasRole('ROLE_ADMIN')" />
+        <security:intercept-url pattern="/home" access="hasAnyRole('ROLE_ADMIN,ROLE_USER')" />
+        <security:intercept-url pattern="/accessdenied" access="permitAll" />
+        <security:access-denied-handler error-page="/accessdenied" />
+        <security:form-login    login-page="/views/login.jsp"
+                                login-processing-url="/appLogin" 
+                                default-target-url="/home" 
+                                username-parameter="username" password-parameter="password"  
+                                authentication-failure-url="/" />
+        <security:logout logout-success-url="/logout" />
+    </security:http>
+   
+    <security:authentication-manager>
+        <security:authentication-provider>
+               <!--  
+                <security:user-service>
+                    <security:user name="admin" password="admin" authorities="ROLE_ADMIN, ROLE_USER" />
+                    <security:user name="sa" password="sa" authorities="ROLE_USER" /> 
+                 </security:user-service>
+                -->
+                <security:jdbc-user-service  
+                    data-source-ref="dataSource"
+                    users-by-username-query="select user_name, password, enabled from USERS where user_name = ?"
+                    authorities-by-username-query="select u.user_name, ur.authority from USERS u, USERS_ROLES ur where u.user_id = ur.user_id and u.user_name = ? " />
+           
+        </security:authentication-provider>
+    </security:authentication-manager>
+    
+    <!-- Resource -->
+    <mvc:resources mapping="/resources/**" location="/resources/" /><!--cache-period="31556926 -->
+</beans>
