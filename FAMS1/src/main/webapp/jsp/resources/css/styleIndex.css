@@ -1,0 +1,42 @@
+@CHARSET "ISO-8859-1";
+/*
+	CSS for Index
+*/
+.dINLE {
+	float: left;
+	border: 0px solid;
+	width: 17.5%;
+}
+
+.dINRI {
+	float: left;
+	margin: 0 auto;
+	border: 0px solid;
+	width: 82.0%;
+	margin-left: 0.1%;
+	margin-top: 3%;
+}
+
+.dINAL {
+	width: 85%;
+	margin: auto;
+	border: 0px solid #C8C8C8;
+	box-shadow: 1px -1px 1px 1px;
+	border-radius: 5px;
+	background-color: #FFFFFF;
+}
+
+.dINCO {
+	border: 0px solid;
+	height: 800px;
+}
+
+body {
+	background-color: #001a33;
+	font-family: Arial;
+}
+span {
+	font-size: 7px;
+	color: #3399ff;
+	vertical-align: middle;
+}

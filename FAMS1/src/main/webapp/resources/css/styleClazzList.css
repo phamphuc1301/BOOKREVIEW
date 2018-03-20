@@ -1,0 +1,77 @@
+@CHARSET "UTF-8";
+
+.clWapper {
+	width: 95%;
+	border: 0px solid;
+	background-color: white;
+	margin: auto;
+	height: auto;
+	overflow: auto;
+	height: auto;
+}
+
+.rowTitle {
+	height: 30px;
+	width: 100%;
+	/* 	background-color: #B8B8B8; */
+	font-family: Candana;
+	font-size: 20px;
+	font-weight: bolder;
+	line-height: 30px;
+	text-indent: 10px;
+	border-bottom: 1px solid #B8B8B8;
+}
+
+.rowContent {
+	margin-top: 10px;
+	height: auto;
+	overflow: auto;
+}
+
+.table3, .table3 tr, .table3 td, .table3 th {
+	font-family: Candana;
+	font-size: 13px;
+	border: 1px solid #e5e5cc;
+	padding: 3px;
+	border-collapse: collapse;
+}
+
+.table3 {
+	width: 100%;
+	margin: auto;
+	margin-top: 10px;
+	
+}
+
+.table3 tr {
+	padding: 5px;
+}
+
+ .table3 tr:nth-child(odd) {
+	background-color: #F0F0F0;
+}
+ 
+.table3 thead tr:nth-child(1) {
+	background-color: #3399ff;
+	height: 40px;
+}
+
+.table3 th:nth-child(1) {
+	width: 10%;
+}
+
+.table3 th:nth-child(2) {
+	width: 25%;
+}
+
+.table3 th:nth-child(3) {
+	width: 10%;
+}
+
+.table3 th:nth-child(4) {
+	width: 40%;
+}
+
+.table3 th:nth-child(5) {
+	width: 15%;
+}
